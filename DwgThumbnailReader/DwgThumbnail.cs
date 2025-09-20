@@ -26,7 +26,7 @@ public class DwgThumbnail
     {
         try
         {
-            return GetThumbnail(s);
+            return new DwgThumbnail().GetThumbnail(s);
         }
         catch (Exception e)
         {
@@ -35,7 +35,7 @@ public class DwgThumbnail
         }
     }
 
-    private static DwgThumbnailData GetThumbnail(Stream s)
+    private DwgThumbnailData GetThumbnail(Stream s)
     {
         if (!IsDwg(s))
             return DwgThumbnailData.Empty();
@@ -77,7 +77,7 @@ public class DwgThumbnail
                 uint colorTableSize = (uint)((biBitCount < 9) ? 4 * Math.Pow(2, biBitCount) : 0);
                 using MemoryStream ms = new MemoryStream();
                 using BinaryWriter bw = new BinaryWriter(ms);
-                //bw.Write(new byte[] { 0x42, 0x4D });
+
                 bw.Write((ushort)0x4D42);
                 bw.Write(54U + colorTableSize + biSizeImage);
                 bw.Write(new ushort());
@@ -127,7 +127,7 @@ public class DwgThumbnail
         return DwgThumbnailData.Empty();
     }
 
-    private static bool IsDwg(Stream s)
+    private bool IsDwg(Stream s)
     {
         const int acLen = 2;
 
@@ -143,7 +143,7 @@ public class DwgThumbnail
         return ac[0] == 0x41 && ac[1] == 0x43;
     }
 
-    private static bool IsPositionInFile(Stream s, Int64 pos)
+    private bool IsPositionInFile(Stream s, Int64 pos)
     {
         return (s.Position + pos) < s.Length;
     }
