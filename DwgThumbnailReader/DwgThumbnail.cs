@@ -8,7 +8,7 @@ namespace DwgThumbnailReader;
 
 public class DwgThumbnail
 {
-    public static DwgThumbnailData GetImage(string fileName)
+    public static DwgThumbnailImage GetImage(string fileName)
     {
         try
         {
@@ -18,11 +18,11 @@ public class DwgThumbnail
         catch (Exception e)
         {
             _ = e;
-            return DwgThumbnailData.Empty();
+            return DwgThumbnailImage.Empty();
         }
     }
 
-    public static DwgThumbnailData GetImage(Stream s)
+    public static DwgThumbnailImage GetImage(Stream s)
     {
         try
         {
@@ -31,26 +31,26 @@ public class DwgThumbnail
         catch (Exception e)
         {
             _ = e;
-            return DwgThumbnailData.Empty();
+            return DwgThumbnailImage.Empty();
         }
     }
 
-    private DwgThumbnailData GetThumbnail(Stream s)
+    private DwgThumbnailImage GetThumbnail(Stream s)
     {
         if (!IsDwg(s))
-            return DwgThumbnailData.Empty();
+            return DwgThumbnailImage.Empty();
 
         using BinaryReader br = new BinaryReader(s);
         s.Seek(0xD, SeekOrigin.Begin);
 
         var nextPos = 0x14 + br.ReadInt32();
         if (nextPos >= s.Length)
-            return new DwgThumbnailData();
+            return new DwgThumbnailImage();
         s.Seek(nextPos, SeekOrigin.Begin);
 
         var bytCnt = br.ReadByte();
         if (bytCnt <= 1)
-            return DwgThumbnailData.Empty();
+            return DwgThumbnailImage.Empty();
 
         for (short i = 1; i <= bytCnt; i++)
         {
@@ -85,7 +85,7 @@ public class DwgThumbnail
                 bw.Write(54U + colorTableSize);
                 bw.Write(bitmapBuffer);
 
-                return new DwgThumbnailData
+                return new DwgThumbnailImage
                 {
                     ImageType = DwgThumbnailImageType.Bmp,
                     Bytes = [.. ms.GetBuffer()],
@@ -96,7 +96,7 @@ public class DwgThumbnail
             // unknown
             if (imageCode == 3)
             {
-                return DwgThumbnailData.Empty();
+                return DwgThumbnailImage.Empty();
             }
 
             // png
@@ -106,9 +106,9 @@ public class DwgThumbnail
                 s.Seek(imageHeaderStart, SeekOrigin.Begin);
 
                 if (!IsPositionInFile(s, imageHeaderSize))
-                    return DwgThumbnailData.Empty();
+                    return DwgThumbnailImage.Empty();
 
-                var data = new DwgThumbnailData
+                var data = new DwgThumbnailImage
                 {
                     ImageType = DwgThumbnailImageType.Png
                 };
@@ -124,7 +124,7 @@ public class DwgThumbnail
             }
         }
 
-        return DwgThumbnailData.Empty();
+        return DwgThumbnailImage.Empty();
     }
 
     private bool IsDwg(Stream s)

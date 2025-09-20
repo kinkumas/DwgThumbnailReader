@@ -2,7 +2,7 @@
 
 namespace DwgThumbnailReader;
 
-public class DwgThumbnailData
+public class DwgThumbnailImage
 {
     public DwgThumbnailImageType ImageType { get; set; } = DwgThumbnailImageType.None;
 
@@ -10,8 +10,8 @@ public class DwgThumbnailData
 
     public long Length { get; set; } = 0;
 
-    public static DwgThumbnailData Empty()
+    public static DwgThumbnailImage Empty()
     {
-        return new DwgThumbnailData();
+        return new DwgThumbnailImage();
     }
 }
