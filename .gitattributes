@@ -1,0 +1,74 @@
+* text=auto eol=crlf
+*.{cmd,[cC][mM][dD]} text eol=crlf
+*.{bat,[bB][aA][tT]} text eol=crlf
+*.sh text eol=lf
+*.command text eol=lf
+*.go text eol=lf
+
+# image
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.bmp binary
+*.tf binary
+*.tff binary
+*.ico binary
+*.psd binary
+*.tga binary
+*.webp binary
+*.ai binary
+*.eps binary
+
+*.zip    binary
+*.tar    binary
+*.gz     binary
+*.tgz    binary
+*.bz2    binary
+*.rar    binary
+*.7z     binary
+
+*.exe binary
+*.dll binary
+*.lib binary
+*.so binary
+*.dylib binary
+*.bin binary
+*.apk binary
+*.ipa binary
+
+*.avi binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.mpg binary
+*.mpeg binary
+*.flv binary
+*.fla binary
+*.swf binary
+*.wav binary
+*.wmv binary
+*.mkv binary
+
+*.dwg binary
+*.dwg binary
+*.dxf binary
+*.dwt binary
+*.dws binary
+*.shp binary
+*.shx binary
+*.jww binary
+*.jwc binary
+
+*.pdf    binary
+*.doc    binary
+*.docx   binary
+*.xls    binary
+*.xlsx   binary
+*.ppt    binary
+*.pptx   binary
+
+*.ttf    binary
+*.otf    binary
+*.woff   binary
+*.woff2  binary

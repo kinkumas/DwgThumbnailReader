@@ -1,0 +1,26 @@
+﻿<Window x:Class="DwgThumbnailViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DwgThumbnailViewer"
+        mc:Ignorable="d"
+        Title="DWG Thumbnail Viewer" Height="400" Width="500">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <UniformGrid Grid.Row="0" Rows="1">
+            <Button x:Name="DirButton" Content="Open Dwg Folder" Click="DirButton_OnClick"/>
+            <Button x:Name="ReloadButton" Content="Reload" Click="ReloadButton_OnClick"/>
+        </UniformGrid>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
+            <WrapPanel x:Name="ImgList"/>
+        </ScrollViewer>
+    </Grid>
+
+</Window>

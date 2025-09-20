@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="DwgThumbnailViewer.ThumbnailPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DwgThumbnailViewer"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="100"
+             Background="Transparent">
+
+    <Border BorderBrush="Black"
+            BorderThickness="1">
+        <Grid>
+
+            <Image x:FieldModifier="private" Stretch="Uniform"
+                   x:Name="Img"/>
+
+            <Border VerticalAlignment="Bottom"
+                    BorderBrush="DimGray" 
+                    BorderThickness="1"
+                    Background="White"
+                    Opacity="0.6"
+                    Height="24">
+                <TextBlock x:FieldModifier="private"
+                           x:Name="Title"
+                           Margin="3,0,0,0"
+                           FontSize="13"
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Center"
+                           TextTrimming="CharacterEllipsis"/>
+            </Border>
+
+        </Grid>
+    </Border>
+
+</UserControl>
